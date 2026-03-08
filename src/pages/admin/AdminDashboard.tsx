@@ -7,15 +7,32 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
-import { Trash2, Pencil, LogOut, Plus, Upload } from "lucide-react";
+import { Trash2, Pencil, LogOut, Plus, Upload, Mail, MoveRight } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type Post = Tables<"posts">;
+
+interface Inquiry {
+  id: string;
+  name: string;
+  email: string;
+  company: string | null;
+  phone: string | null;
+  message: string;
+  status: string;
+  created_at: string;
+}
 
 const categories = [
   { value: "notice", label: "공지사항" },
   { value: "ir", label: "IR 자료실" },
   { value: "press", label: "보도자료" },
+];
+
+const kanbanColumns = [
+  { key: "new", label: "신규", color: "bg-blue-500/20 text-blue-400 border-blue-500/30" },
+  { key: "in_progress", label: "처리 중", color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" },
+  { key: "done", label: "완료", color: "bg-green-500/20 text-green-400 border-green-500/30" },
 ];
 
 export default function AdminDashboard() {
@@ -27,6 +44,7 @@ export default function AdminDashboard() {
   const [form, setForm] = useState({ title: "", content: "", is_popup: false });
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -35,7 +53,6 @@ export default function AdminDashboard() {
         navigate("/admin/login");
         return;
       }
-      // Check admin role
       const { data: roleData } = await supabase
         .from("user_roles")
         .select("role")
@@ -56,7 +73,11 @@ export default function AdminDashboard() {
   }, [navigate, toast]);
 
   useEffect(() => {
-    fetchPosts();
+    if (activeTab === "inquiries") {
+      fetchInquiries();
+    } else {
+      fetchPosts();
+    }
   }, [activeTab]);
 
   const fetchPosts = async () => {
@@ -66,6 +87,35 @@ export default function AdminDashboard() {
       .eq("category", activeTab)
       .order("created_at", { ascending: false });
     setPosts(data || []);
+  };
+
+  const fetchInquiries = async () => {
+    const { data } = await supabase
+      .from("inquiries")
+      .select("*")
+      .order("created_at", { ascending: false });
+    setInquiries((data as Inquiry[]) || []);
+  };
+
+  const moveInquiry = async (id: string, newStatus: string) => {
+    const { error } = await supabase
+      .from("inquiries")
+      .update({ status: newStatus })
+      .eq("id", id);
+    if (error) {
+      toast({ title: "상태 변경 실패", variant: "destructive" });
+    } else {
+      setInquiries((prev) =>
+        prev.map((inq) => (inq.id === id ? { ...inq, status: newStatus } : inq))
+      );
+    }
+  };
+
+  const deleteInquiry = async (id: string) => {
+    if (!confirm("삭제하시겠습니까?")) return;
+    await supabase.from("inquiries").delete().eq("id", id);
+    toast({ title: "삭제 완료" });
+    fetchInquiries();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -126,6 +176,12 @@ export default function AdminDashboard() {
     await supabase.auth.signOut();
   };
 
+  const getNextStatus = (current: string) => {
+    if (current === "new") return "in_progress";
+    if (current === "in_progress") return "done";
+    return null;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border px-4 sm:px-6 py-4 flex items-center justify-between">
@@ -139,17 +195,19 @@ export default function AdminDashboard() {
         </Button>
       </header>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         <Tabs value={activeTab} onValueChange={(v) => { setActiveTab(v); setEditing(null); setForm({ title: "", content: "", is_popup: false }); }}>
           <TabsList className="mb-6">
             {categories.map((c) => (
               <TabsTrigger key={c.value} value={c.value}>{c.label}</TabsTrigger>
             ))}
+            <TabsTrigger value="inquiries">
+              <Mail size={14} className="mr-1" /> 문의
+            </TabsTrigger>
           </TabsList>
 
           {categories.map((c) => (
             <TabsContent key={c.value} value={c.value}>
-              {/* Form */}
               <form onSubmit={handleSubmit} className="bg-card border border-border rounded-lg p-5 mb-8 space-y-4">
                 <h2 className="text-sm font-semibold text-primary">
                   {editing ? "게시물 수정" : "새 게시물 작성"}
@@ -191,7 +249,6 @@ export default function AdminDashboard() {
                 </div>
               </form>
 
-              {/* List */}
               <div className="space-y-2">
                 {posts.length === 0 && <p className="text-sm text-muted-foreground">게시물이 없습니다.</p>}
                 {posts.map((post) => (
@@ -215,6 +272,79 @@ export default function AdminDashboard() {
               </div>
             </TabsContent>
           ))}
+
+          {/* Inquiries Kanban */}
+          <TabsContent value="inquiries">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {kanbanColumns.map((col) => {
+                const items = inquiries.filter((inq) => inq.status === col.key);
+                return (
+                  <div key={col.key} className="space-y-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${col.color}`}>
+                        {col.label}
+                      </span>
+                      <span className="text-xs text-muted-foreground">{items.length}</span>
+                    </div>
+
+                    {items.length === 0 && (
+                      <p className="text-xs text-muted-foreground py-8 text-center border border-dashed border-border rounded-lg">
+                        비어 있음
+                      </p>
+                    )}
+
+                    {items.map((inq) => {
+                      const next = getNextStatus(inq.status);
+                      const nextLabel = kanbanColumns.find((c) => c.key === next)?.label;
+                      return (
+                        <div
+                          key={inq.id}
+                          className="bg-card border border-border rounded-lg p-4 space-y-2"
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <h4 className="text-sm font-semibold text-foreground">{inq.name}</h4>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="shrink-0 h-7 w-7"
+                              onClick={() => deleteInquiry(inq.id)}
+                            >
+                              <Trash2 size={12} className="text-destructive" />
+                            </Button>
+                          </div>
+                          <p className="text-xs text-muted-foreground">{inq.email}</p>
+                          {inq.company && (
+                            <p className="text-xs text-muted-foreground">{inq.company}</p>
+                          )}
+                          {inq.phone && (
+                            <p className="text-xs text-muted-foreground">{inq.phone}</p>
+                          )}
+                          <p className="text-sm text-foreground leading-relaxed line-clamp-4 whitespace-pre-wrap">
+                            {inq.message}
+                          </p>
+                          <div className="flex items-center justify-between pt-2 border-t border-border">
+                            <span className="text-[10px] text-muted-foreground">
+                              {new Date(inq.created_at).toLocaleDateString("ko-KR")}
+                            </span>
+                            {next && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="h-7 text-xs gap-1"
+                                onClick={() => moveInquiry(inq.id, next)}
+                              >
+                                {nextLabel} <MoveRight size={12} />
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
