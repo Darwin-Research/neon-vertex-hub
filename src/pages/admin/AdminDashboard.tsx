@@ -366,23 +366,15 @@ export default function AdminDashboard() {
                           </div>
 
                           {/* Admin notes */}
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button variant="outline" size="sm" className="h-7 text-xs gap-1 w-full justify-start">
-                                <StickyNote size={12} />
-                                {inq.admin_notes ? "메모 보기" : "메모 추가"}
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-72 p-3">
-                              <Textarea
-                                placeholder="메모를 입력하세요..."
-                                rows={3}
-                                className="text-xs bg-secondary"
-                                defaultValue={inq.admin_notes || ""}
-                                onBlur={(e) => updateInquiryField(inq.id, "admin_notes", e.target.value)}
-                              />
-                            </PopoverContent>
-                          </Popover>
+                           <div className="pt-2 border-t border-border">
+                             <Textarea
+                               placeholder="메모를 입력하세요..."
+                               rows={2}
+                               className="text-xs bg-secondary"
+                               value={inq.admin_notes || ""}
+                               onChange={(e) => updateInquiryField(inq.id, "admin_notes", e.target.value)}
+                             />
+                           </div>
 
                           <div className="flex items-center justify-between pt-2 border-t border-border">
                             <span className="text-[10px] text-muted-foreground">
