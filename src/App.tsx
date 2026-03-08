@@ -28,9 +28,9 @@ const App = () => (
           <Route path="/history" element={<History />} />
           <Route path="/leadership" element={<Leadership />} />
           <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/notice" element={<BoardList />} />
-          <Route path="/ir" element={<BoardList />} />
-          <Route path="/press" element={<BoardList />} />
+          <Route path="/notice" element={<BoardListWrapper category="notice" />} />
+          <Route path="/ir" element={<BoardListWrapper category="ir" />} />
+          <Route path="/press" element={<BoardListWrapper category="press" />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
