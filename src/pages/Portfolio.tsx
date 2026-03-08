@@ -61,8 +61,8 @@ export default function Portfolio() {
                 <span className={cn(
                   "text-xs px-2 py-0.5 rounded-full font-medium",
                   c.status === "IPO" && "bg-primary/20 text-primary",
-                  c.status === "Exit" && "bg-blue-500/20 text-blue-400",
-                  c.status === "성장" && "bg-yellow-500/20 text-yellow-400",
+                  c.status === "Exit" && "bg-muted text-muted-foreground",
+                  c.status === "성장" && "bg-secondary text-foreground",
                   c.status === "초기" && "bg-secondary text-secondary-foreground"
                 )}>{c.status}</span>
               </div>
