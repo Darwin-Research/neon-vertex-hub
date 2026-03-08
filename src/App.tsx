@@ -33,6 +33,7 @@ const App = () => (
           <Route path="/ir" element={<BoardList category="ir" />} />
           <Route path="/press" element={<BoardList category="press" />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/directions" element={<Directions />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
