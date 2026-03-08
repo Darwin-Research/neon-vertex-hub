@@ -21,6 +21,7 @@ const categoryConfig: Record<string, { label: string; tag: string }> = {
 
 export default function BoardList({ category }: { category: string }) {
   const config = categoryConfig[category] || categoryConfig.notice;
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
