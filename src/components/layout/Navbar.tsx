@@ -58,15 +58,15 @@ export default function Navbar() {
 
       {/* Dropdown menu */}
       {open && (
-        <div className="bg-background border-b border-border">
-          <div className="px-4 py-3 space-y-1">
+        <div className="absolute right-4 top-16 bg-background border border-border rounded-lg shadow-lg w-auto min-w-[140px]">
+          <div className="px-2 py-2 space-y-0.5">
             {[...mainNavItems, ...mobileOnlyItems].map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  "block px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                  "block px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap",
                   location.pathname === item.path
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
