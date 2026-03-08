@@ -121,6 +121,28 @@ export default function AdminDashboard() {
     fetchInquiries();
   };
 
+  const updateInquiryField = async (id: string, field: string, value: string | null) => {
+    const { error } = await supabase
+      .from("inquiries")
+      .update({ [field]: value })
+      .eq("id", id);
+    if (error) {
+      toast({ title: "수정 실패", variant: "destructive" });
+    } else {
+      setInquiries((prev) =>
+        prev.map((inq) => (inq.id === id ? { ...inq, [field]: value } : inq))
+      );
+    }
+  };
+
+  const getDaysRemaining = (dueDate: string | null) => {
+    if (!dueDate) return null;
+    const now = new Date();
+    const due = new Date(dueDate);
+    const diff = Math.ceil((due.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    return diff;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
