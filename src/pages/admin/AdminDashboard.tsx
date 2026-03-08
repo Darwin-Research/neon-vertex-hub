@@ -321,6 +321,7 @@ export default function AdminDashboard() {
                     {items.map((inq) => {
                       const next = getNextStatus(inq.status);
                       const nextLabel = kanbanColumns.find((c) => c.key === next)?.label;
+                      const daysLeft = getDaysRemaining(inq.due_date);
                       return (
                         <div
                           key={inq.id}
@@ -347,6 +348,42 @@ export default function AdminDashboard() {
                           <p className="text-sm text-foreground leading-relaxed line-clamp-4 whitespace-pre-wrap">
                             {inq.message}
                           </p>
+
+                          {/* Due date */}
+                          <div className="flex items-center gap-2 pt-1">
+                            <CalendarIcon size={12} className="text-muted-foreground" />
+                            <Input
+                              type="date"
+                              className="h-7 text-xs bg-secondary w-auto"
+                              value={inq.due_date || ""}
+                              onChange={(e) => updateInquiryField(inq.id, "due_date", e.target.value || null)}
+                            />
+                            {daysLeft !== null && (
+                              <span className={`text-[10px] font-medium ${daysLeft < 0 ? "text-destructive" : daysLeft <= 2 ? "text-yellow-500" : "text-muted-foreground"}`}>
+                                {daysLeft < 0 ? `${Math.abs(daysLeft)}일 초과` : `${daysLeft}일 남음`}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Admin notes */}
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button variant="outline" size="sm" className="h-7 text-xs gap-1 w-full justify-start">
+                                <StickyNote size={12} />
+                                {inq.admin_notes ? "메모 보기" : "메모 추가"}
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-72 p-3">
+                              <Textarea
+                                placeholder="메모를 입력하세요..."
+                                rows={3}
+                                className="text-xs bg-secondary"
+                                defaultValue={inq.admin_notes || ""}
+                                onBlur={(e) => updateInquiryField(inq.id, "admin_notes", e.target.value)}
+                              />
+                            </PopoverContent>
+                          </Popover>
+
                           <div className="flex items-center justify-between pt-2 border-t border-border">
                             <span className="text-[10px] text-muted-foreground">
                               {new Date(inq.created_at).toLocaleDateString("ko-KR")}
