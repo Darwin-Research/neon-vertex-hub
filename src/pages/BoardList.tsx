@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
