@@ -14,6 +14,7 @@ const mainNavItems = [
 const mobileOnlyItems = [
   { label: "연혁", path: "/history" },
   { label: "공지사항", path: "/notice" },
+  { label: "오시는 길", path: "/directions" },
   { label: "문의하기", path: "/contact" },
 ];
 

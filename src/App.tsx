@@ -12,6 +12,7 @@ import BoardList from "./pages/BoardList";
 import Contact from "./pages/Contact";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import Directions from "./pages/Directions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/ir" element={<BoardList category="ir" />} />
           <Route path="/press" element={<BoardList category="press" />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/directions" element={<Directions />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
