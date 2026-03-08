@@ -34,7 +34,7 @@ export default function Contact() {
           <h1 className="text-4xl md:text-5xl font-black mb-16">문의하기</h1>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="max-w-xl">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Input placeholder="이름 *" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="bg-card" />
@@ -49,30 +49,6 @@ export default function Contact() {
               {loading ? "전송 중..." : "문의 보내기"}
             </Button>
           </form>
-
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <MapPin className="text-primary shrink-0 mt-1" size={20} />
-              <div>
-                <h3 className="font-semibold mb-1">오시는 길</h3>
-                <p className="text-sm text-muted-foreground">서울특별시 강남구 테헤란로 123<br />Vertex Tower 15층</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Phone className="text-primary shrink-0 mt-1" size={20} />
-              <div>
-                <h3 className="font-semibold mb-1">전화</h3>
-                <p className="text-sm text-muted-foreground">02-1234-5678</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Mail className="text-primary shrink-0 mt-1" size={20} />
-              <div>
-                <h3 className="font-semibold mb-1">이메일</h3>
-                <p className="text-sm text-muted-foreground">info@vertexcapital.co.kr</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </Layout>
