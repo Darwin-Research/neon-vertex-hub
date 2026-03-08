@@ -56,7 +56,8 @@ export default function BoardList({ category }: { category: string }) {
             {posts.map((post) => (
               <div
                 key={post.id}
-                className="flex items-center gap-4 py-4 px-4 border-b border-border hover:bg-card/50 rounded transition-colors"
+                onClick={() => navigate(`/${category}/${post.id}`)}
+                className="flex items-center gap-4 py-4 px-4 border-b border-border hover:bg-card/50 rounded transition-colors cursor-pointer"
               >
                 <FileText size={18} className="text-primary shrink-0" />
                 <div className="flex-1 min-w-0">
