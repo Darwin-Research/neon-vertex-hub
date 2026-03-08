@@ -16,8 +16,10 @@ export type Database = {
     Tables: {
       inquiries: {
         Row: {
+          admin_notes: string | null
           company: string | null
           created_at: string
+          due_date: string | null
           email: string
           id: string
           message: string
@@ -26,8 +28,10 @@ export type Database = {
           status: string
         }
         Insert: {
+          admin_notes?: string | null
           company?: string | null
           created_at?: string
+          due_date?: string | null
           email: string
           id?: string
           message: string
@@ -36,8 +40,10 @@ export type Database = {
           status?: string
         }
         Update: {
+          admin_notes?: string | null
           company?: string | null
           created_at?: string
+          due_date?: string | null
           email?: string
           id?: string
           message?: string

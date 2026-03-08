@@ -7,7 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
-import { Trash2, Pencil, LogOut, Plus, Upload, Mail, MoveRight } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Trash2, Pencil, LogOut, Plus, Upload, Mail, MoveRight, CalendarIcon, StickyNote } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type Post = Tables<"posts">;
@@ -21,6 +22,8 @@ interface Inquiry {
   message: string;
   status: string;
   created_at: string;
+  due_date: string | null;
+  admin_notes: string | null;
 }
 
 const categories = [
@@ -116,6 +119,28 @@ export default function AdminDashboard() {
     await supabase.from("inquiries").delete().eq("id", id);
     toast({ title: "삭제 완료" });
     fetchInquiries();
+  };
+
+  const updateInquiryField = async (id: string, field: string, value: string | null) => {
+    const { error } = await supabase
+      .from("inquiries")
+      .update({ [field]: value })
+      .eq("id", id);
+    if (error) {
+      toast({ title: "수정 실패", variant: "destructive" });
+    } else {
+      setInquiries((prev) =>
+        prev.map((inq) => (inq.id === id ? { ...inq, [field]: value } : inq))
+      );
+    }
+  };
+
+  const getDaysRemaining = (dueDate: string | null) => {
+    if (!dueDate) return null;
+    const now = new Date();
+    const due = new Date(dueDate);
+    const diff = Math.ceil((due.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    return diff;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -296,6 +321,7 @@ export default function AdminDashboard() {
                     {items.map((inq) => {
                       const next = getNextStatus(inq.status);
                       const nextLabel = kanbanColumns.find((c) => c.key === next)?.label;
+                      const daysLeft = getDaysRemaining(inq.due_date);
                       return (
                         <div
                           key={inq.id}
@@ -322,6 +348,42 @@ export default function AdminDashboard() {
                           <p className="text-sm text-foreground leading-relaxed line-clamp-4 whitespace-pre-wrap">
                             {inq.message}
                           </p>
+
+                          {/* Due date */}
+                          <div className="flex items-center gap-2 pt-1">
+                            <CalendarIcon size={12} className="text-muted-foreground" />
+                            <Input
+                              type="date"
+                              className="h-7 text-xs bg-secondary w-auto"
+                              value={inq.due_date || ""}
+                              onChange={(e) => updateInquiryField(inq.id, "due_date", e.target.value || null)}
+                            />
+                            {daysLeft !== null && (
+                              <span className={`text-[10px] font-medium ${daysLeft < 0 ? "text-destructive" : daysLeft <= 2 ? "text-yellow-500" : "text-muted-foreground"}`}>
+                                {daysLeft < 0 ? `${Math.abs(daysLeft)}일 초과` : `${daysLeft}일 남음`}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Admin notes */}
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button variant="outline" size="sm" className="h-7 text-xs gap-1 w-full justify-start">
+                                <StickyNote size={12} />
+                                {inq.admin_notes ? "메모 보기" : "메모 추가"}
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-72 p-3">
+                              <Textarea
+                                placeholder="메모를 입력하세요..."
+                                rows={3}
+                                className="text-xs bg-secondary"
+                                defaultValue={inq.admin_notes || ""}
+                                onBlur={(e) => updateInquiryField(inq.id, "admin_notes", e.target.value)}
+                              />
+                            </PopoverContent>
+                          </Popover>
+
                           <div className="flex items-center justify-between pt-2 border-t border-border">
                             <span className="text-[10px] text-muted-foreground">
                               {new Date(inq.created_at).toLocaleDateString("ko-KR")}
