@@ -30,14 +30,14 @@ export default function Navbar() {
             <span className="text-primary">CAPITAL</span>
           </Link>
 
-          {/* Desktop */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
+          {/* Always visible main nav */}
+          <div className="hidden sm:flex items-center gap-0.5 overflow-x-auto">
+            {mainNavItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  "px-3 py-1.5 rounded-md text-sm font-medium transition-colors",
+                  "px-2 py-1.5 rounded-md text-xs md:text-sm font-medium transition-colors whitespace-nowrap",
                   location.pathname === item.path
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -49,7 +49,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile toggle */}
-          <button className="lg:hidden text-foreground" onClick={() => setOpen(!open)}>
+          <button className="text-foreground" onClick={() => setOpen(!open)}>
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
