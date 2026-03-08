@@ -31,11 +31,9 @@ const App = () => (
           <Route path="/leadership" element={<Leadership />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/notice" element={<BoardList category="notice" />} />
-          <Route path="/notice/:id" element={<BoardDetail />} />
           <Route path="/ir" element={<BoardList category="ir" />} />
-          <Route path="/ir/:id" element={<BoardDetail />} />
           <Route path="/press" element={<BoardList category="press" />} />
-          <Route path="/press/:id" element={<BoardDetail />} />
+          <Route path="/:category/:id" element={<BoardDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/directions" element={<Directions />} />
           <Route path="/admin/login" element={<AdminLogin />} />
