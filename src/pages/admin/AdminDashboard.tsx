@@ -21,6 +21,8 @@ interface Inquiry {
   message: string;
   status: string;
   created_at: string;
+  due_date: string | null;
+  admin_notes: string | null;
 }
 
 const categories = [
