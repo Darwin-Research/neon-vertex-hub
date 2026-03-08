@@ -55,11 +55,11 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Dropdown menu */}
       {open && (
-        <div className="lg:hidden bg-background border-b border-border">
+        <div className="bg-background border-b border-border">
           <div className="px-4 py-3 space-y-1">
-            {navItems.map((item) => (
+            {[...mainNavItems, ...mobileOnlyItems].map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
