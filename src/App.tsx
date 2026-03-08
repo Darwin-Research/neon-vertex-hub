@@ -12,6 +12,7 @@ import BoardList from "./pages/BoardList";
 import Contact from "./pages/Contact";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import Directions from "./pages/Directions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
