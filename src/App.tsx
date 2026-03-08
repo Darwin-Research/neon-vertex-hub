@@ -9,6 +9,7 @@ import History from "./pages/History";
 import Leadership from "./pages/Leadership";
 import Portfolio from "./pages/Portfolio";
 import BoardList from "./pages/BoardList";
+import BoardDetail from "./pages/BoardDetail";
 import Contact from "./pages/Contact";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/notice" element={<BoardList category="notice" />} />
           <Route path="/ir" element={<BoardList category="ir" />} />
           <Route path="/press" element={<BoardList category="press" />} />
+          <Route path="/:category/:id" element={<BoardDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/directions" element={<Directions />} />
           <Route path="/admin/login" element={<AdminLogin />} />
