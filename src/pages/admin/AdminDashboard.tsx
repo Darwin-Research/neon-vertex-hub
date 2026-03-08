@@ -31,14 +31,29 @@ export default function AdminDashboard() {
   useEffect(() => {
     const checkAuth = async () => {
       const { data } = await supabase.auth.getSession();
-      if (!data.session) navigate("/admin/login");
+      if (!data.session) {
+        navigate("/admin/login");
+        return;
+      }
+      // Check admin role
+      const { data: roleData } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", data.session.user.id)
+        .eq("role", "admin")
+        .maybeSingle();
+      if (!roleData) {
+        toast({ title: "접근 거부", description: "관리자 권한이 없습니다.", variant: "destructive" });
+        await supabase.auth.signOut();
+        navigate("/admin/login");
+      }
     };
     checkAuth();
     const { data: listener } = supabase.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_OUT") navigate("/admin/login");
     });
     return () => listener.subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, toast]);
 
   useEffect(() => {
     fetchPosts();
