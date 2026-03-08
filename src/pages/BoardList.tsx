@@ -18,9 +18,8 @@ const categoryConfig: Record<string, { label: string; tag: string }> = {
   press: { label: "보도자료", tag: "PRESS RELEASE" },
 };
 
-export default function BoardList() {
-  const { category } = useParams<{ category: string }>();
-  const config = categoryConfig[category || ""] || categoryConfig.notice;
+export default function BoardList({ category }: { category: string }) {
+  const config = categoryConfig[category] || categoryConfig.notice;
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
