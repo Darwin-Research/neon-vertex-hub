@@ -129,11 +129,11 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border px-4 sm:px-6 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-black">
+        <Link to="/" className="text-lg font-black">
           <span className="text-foreground">VERTEX</span>
           <span className="text-primary">CAPITAL</span>
           <span className="text-sm font-normal text-muted-foreground ml-2">Admin</span>
-        </h1>
+        </Link>
         <Button variant="ghost" size="sm" onClick={handleLogout}>
           <LogOut size={16} className="mr-1" /> 로그아웃
         </Button>
