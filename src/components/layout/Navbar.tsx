@@ -3,14 +3,17 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const navItems = [
+const mainNavItems = [
   { label: "회사소개", path: "/about" },
-  { label: "연혁", path: "/history" },
-  { label: "경영진", path: "/leadership" },
   { label: "사업실적", path: "/portfolio" },
-  { label: "IR 자료실", path: "/ir" },
-  { label: "공지사항", path: "/notice" },
+  { label: "경영진", path: "/leadership" },
   { label: "보도자료", path: "/press" },
+  { label: "IR 자료실", path: "/ir" },
+];
+
+const mobileOnlyItems = [
+  { label: "연혁", path: "/history" },
+  { label: "공지사항", path: "/notice" },
   { label: "문의하기", path: "/contact" },
 ];
 
