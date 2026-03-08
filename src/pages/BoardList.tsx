@@ -29,7 +29,7 @@ export default function BoardList({ category }: { category: string }) {
       const { data } = await supabase
         .from("posts")
         .select("id, title, content, file_url, created_at")
-        .eq("category", category || "notice")
+        .eq("category", category)
         .order("created_at", { ascending: false });
       setPosts(data || []);
       setLoading(false);
