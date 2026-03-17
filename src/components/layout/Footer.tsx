@@ -29,7 +29,7 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>서울특별시 강남구 테헤란로 123</p>
               <p>Tel: 02-1234-5678</p>
-              <p>Email: info@vertexcapital.co.kr</p>
+              <p>Email: info@darwinuniverse.co.kr</p>
             </div>
           </div>
         </div>
