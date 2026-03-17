@@ -34,7 +34,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-border text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Vertex Capital. All rights reserved.
+          © {new Date().getFullYear()} Darwin Universe. All rights reserved.
         </div>
       </div>
     </footer>

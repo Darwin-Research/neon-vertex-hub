@@ -35,7 +35,7 @@ export default function Directions() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Vertex Capital 위치"
+              title="Darwin Universe 위치"
             />
           </motion.div>
 

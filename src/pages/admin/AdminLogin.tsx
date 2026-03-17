@@ -39,8 +39,8 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-sm">
         <h1 className="text-2xl font-black text-center mb-8">
-          <span className="text-foreground">VERTEX</span>
-          <span className="text-primary">CAPITAL</span>
+          <span className="text-foreground">DARWIN</span>
+          <span className="text-primary">UNIVERSE</span>
           <span className="block text-sm text-muted-foreground font-normal mt-1">관리자 로그인</span>
         </h1>
         <form onSubmit={handleLogin} className="space-y-4">
