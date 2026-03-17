@@ -9,7 +9,7 @@ export default function About() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <p className="text-primary font-semibold tracking-widest text-sm mb-4">ABOUT US</p>
           <h1 className="text-4xl md:text-5xl font-black mb-6">
-            혁신의 파트너,<br /><span className="text-primary glow-text">Vertex Capital</span>
+            혁신의 파트너,<br /><span className="text-primary glow-text">Darwin Universe</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed mb-16">
             Vertex Capital은 2010년 설립 이래, 기술 기반 혁신 기업에 대한 전략적 투자를 통해 
