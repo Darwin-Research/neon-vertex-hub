@@ -7,8 +7,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <Link to="/" className="text-xl font-black tracking-tight">
-              <span className="text-foreground">VERTEX</span>
-              <span className="text-primary">CAPITAL</span>
+              <span className="text-foreground">DARWIN</span>
+              <span className="text-primary">UNIVERSE</span>
             </Link>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               혁신 기업과 함께 성장하며,<br />
