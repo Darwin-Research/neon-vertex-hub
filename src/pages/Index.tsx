@@ -61,7 +61,7 @@ export default function Index() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-muted-foreground text-lg max-w-xl mb-10"
           >
-            Vertex Capital은 혁신 기업과 함께 성장하며, 대한민국 벤처 생태계의 새로운 기준을 만들어갑니다.
+            Darwin Universe는 혁신 기업과 함께 성장하며, 대한민국 벤처 생태계의 새로운 기준을 만들어갑니다.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

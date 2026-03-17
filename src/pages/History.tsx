@@ -2,7 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 
 const timeline = [
-  { year: "2010", event: "Vertex Capital 설립" },
+  { year: "2010", event: "Darwin Universe 설립" },
   { year: "2012", event: "1호 펀드 (300억) 결성" },
   { year: "2014", event: "첫 투자 기업 IPO 성공" },
   { year: "2016", event: "누적 투자 1,000억 돌파" },

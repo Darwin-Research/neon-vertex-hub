@@ -9,10 +9,10 @@ export default function About() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <p className="text-primary font-semibold tracking-widest text-sm mb-4">ABOUT US</p>
           <h1 className="text-4xl md:text-5xl font-black mb-6">
-            혁신의 파트너,<br /><span className="text-primary glow-text">Vertex Capital</span>
+            혁신의 파트너,<br /><span className="text-primary glow-text">Darwin Universe</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed mb-16">
-            Vertex Capital은 2010년 설립 이래, 기술 기반 혁신 기업에 대한 전략적 투자를 통해 
+            Darwin Universe는 2010년 설립 이래, 기술 기반 혁신 기업에 대한 전략적 투자를 통해 
             대한민국 벤처 생태계의 성장을 이끌어 왔습니다. 초기 스타트업부터 성장 단계 기업까지, 
             단순한 자본 투자를 넘어 전략적 파트너십을 제공합니다.
           </p>

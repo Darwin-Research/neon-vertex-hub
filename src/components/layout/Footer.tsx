@@ -7,8 +7,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <Link to="/" className="text-xl font-black tracking-tight">
-              <span className="text-foreground">VERTEX</span>
-              <span className="text-primary">CAPITAL</span>
+              <span className="text-foreground">DARWIN</span>
+              <span className="text-primary">UNIVERSE</span>
             </Link>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               혁신 기업과 함께 성장하며,<br />
@@ -29,12 +29,12 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-muted-foreground">
               <p>서울특별시 강남구 테헤란로 123</p>
               <p>Tel: 02-1234-5678</p>
-              <p>Email: info@vertexcapital.co.kr</p>
+              <p>Email: info@darwinuniverse.co.kr</p>
             </div>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-border text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Vertex Capital. All rights reserved.
+          © {new Date().getFullYear()} Darwin Universe. All rights reserved.
         </div>
       </div>
     </footer>
