@@ -16,7 +16,7 @@ export default function Directions() {
             <span className="text-primary font-semibold tracking-widest text-sm">LOCATION</span>
             <h1 className="text-4xl md:text-5xl font-black mt-3">오시는 길</h1>
             <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-              Vertex Capital 본사를 방문해 주셔서 감사합니다.
+              Darwin Universe 본사를 방문해 주셔서 감사합니다.
             </p>
           </motion.div>
 
