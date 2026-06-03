@@ -63,6 +63,11 @@ export type Database = {
           is_popup: boolean
           title: string
           updated_at: string
+          source: string | null
+          external_url: string | null
+          doc_type: string | null
+          fiscal_year: number | null
+          quarter: string | null
         }
         Insert: {
           category: string
@@ -73,6 +78,11 @@ export type Database = {
           is_popup?: boolean
           title: string
           updated_at?: string
+          source?: string | null
+          external_url?: string | null
+          doc_type?: string | null
+          fiscal_year?: number | null
+          quarter?: string | null
         }
         Update: {
           category?: string
@@ -83,6 +93,11 @@ export type Database = {
           is_popup?: boolean
           title?: string
           updated_at?: string
+          source?: string | null
+          external_url?: string | null
+          doc_type?: string | null
+          fiscal_year?: number | null
+          quarter?: string | null
         }
         Relationships: []
       }

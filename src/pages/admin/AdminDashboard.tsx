@@ -7,8 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Trash2, Pencil, LogOut, Plus, Upload, Mail, MoveRight, CalendarIcon, StickyNote } from "lucide-react";
+import { Trash2, Pencil, LogOut, Plus, Upload, Mail, MoveRight, CalendarIcon, FileText, BarChart2 } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type Post = Tables<"posts">;
@@ -28,8 +27,6 @@ interface Inquiry {
 
 const categories = [
   { value: "notice", label: "공지사항" },
-  { value: "ir", label: "IR 자료실" },
-  { value: "press", label: "보도자료" },
 ];
 
 const kanbanColumns = [
@@ -221,6 +218,26 @@ export default function AdminDashboard() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {/* Quick links to dedicated admin pages */}
+        <div className="grid grid-cols-2 gap-3 mb-8">
+          <Link to="/admin/press"
+            className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors group">
+            <FileText size={20} className="text-primary" />
+            <div>
+              <p className="text-sm font-semibold">보도자료 관리</p>
+              <p className="text-xs text-muted-foreground">언론사·외부링크·PDF 첨부</p>
+            </div>
+          </Link>
+          <Link to="/admin/ir"
+            className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors group">
+            <BarChart2 size={20} className="text-primary" />
+            <div>
+              <p className="text-sm font-semibold">IR 자료실 관리</p>
+              <p className="text-xs text-muted-foreground">문서유형·회계연도·분기</p>
+            </div>
+          </Link>
+        </div>
+
         <Tabs value={activeTab} onValueChange={(v) => { setActiveTab(v); setEditing(null); setForm({ title: "", content: "", is_popup: false }); }}>
           <TabsList className="mb-6">
             {categories.map((c) => (

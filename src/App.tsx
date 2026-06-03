@@ -13,6 +13,8 @@ import BoardDetail from "./pages/BoardDetail";
 import Contact from "./pages/Contact";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminPress from "./pages/admin/AdminPress";
+import AdminIR from "./pages/admin/AdminIR";
 import Directions from "./pages/Directions";
 import NotFound from "./pages/NotFound";
 
@@ -38,6 +40,8 @@ const App = () => (
           <Route path="/directions" element={<Directions />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/press" element={<AdminPress />} />
+          <Route path="/admin/ir" element={<AdminIR />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
