@@ -1,0 +1,91 @@
+/*
+ * Darwin Research — Design System
+ * Brand identity: Warm cream · Amber gold · Pretendard
+ * Reference: Darwin Research Pilot Deck 2026
+ *
+ * This file defines all design tokens as CSS custom properties.
+ * Import it in index.css and reference via var() or Tailwind theme.
+ */
+
+/* ─── Typography ──────────────────────────────────────────── */
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+
+:root {
+  --dr-font-sans: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+/* ─── Color Palette ───────────────────────────────────────── */
+
+:root {
+  /* Brand */
+  --dr-brand:       #B8935A;   /* Amber gold — primary accent */
+  --dr-brand-lt:    #F5E8D8;   /* Amber tint — hover backgrounds */
+  --dr-brand-dk:    #9A7844;   /* Amber dark — hover state for buttons */
+
+  /* Surfaces */
+  --dr-canvas:      #F7F3EE;   /* Page background — warm cream */
+  --dr-surface:     #FFFFFF;   /* Card / panel surface */
+  --dr-plate:       #F0EBE3;   /* Raised surface — column bg, input bg */
+
+  /* Text */
+  --dr-ink:         #1C1713;   /* Primary text — warm charcoal */
+  --dr-ink-sub:     #78685A;   /* Secondary text — warm brown-gray */
+  --dr-ink-muted:   #A8968A;   /* Muted text — labels, placeholders */
+
+  /* Border */
+  --dr-line:        #E8DDD5;   /* Default border — subtle warm */
+  --dr-line-dk:     #D4C9BE;   /* Stronger border */
+
+  /* Status (Kanban) */
+  --dr-pending:     #9B9082;   /* 진행 전 — warm neutral */
+  --dr-active:      #B8935A;   /* 진행 중 — brand amber */
+  --dr-review:      #C4735A;   /* 검토 중 — warm terracotta */
+  --dr-done:        #6A9E76;   /* 완료 — warm sage */
+}
+
+/* ─── Component Patterns ──────────────────────────────────── */
+
+:root {
+  /* Label style: section headings, field labels */
+  --dr-label-size:    10px;
+  --dr-label-weight:  600;
+  --dr-label-spacing: 0.12em;
+
+  /* Shadows */
+  --dr-shadow-sm: 0 1px 3px rgba(28, 23, 19, 0.06);
+  --dr-shadow-md: 0 4px 12px rgba(28, 23, 19, 0.08);
+  --dr-shadow-lg: 0 8px 24px rgba(28, 23, 19, 0.12);
+
+  /* Border radius */
+  --dr-radius-sm:  6px;
+  --dr-radius-md:  10px;
+  --dr-radius-lg:  16px;
+  --dr-radius-xl:  24px;
+}
+
+/* ─── Usage Reference ─────────────────────────────────────── */
+/*
+ * Section label (PORTFOLIO, ABOUT, etc.):
+ *   font-size: var(--dr-label-size);
+ *   font-weight: var(--dr-label-weight);
+ *   letter-spacing: var(--dr-label-spacing);
+ *   text-transform: uppercase;
+ *   color: var(--dr-brand);
+ *
+ * Primary button:
+ *   background: var(--dr-brand);
+ *   color: #fff;
+ *   hover: background: var(--dr-brand-dk);
+ *
+ * Secondary button:
+ *   border: 1px solid var(--dr-line);
+ *   color: var(--dr-ink-sub);
+ *   hover: background: var(--dr-plate);
+ *
+ * Input:
+ *   border: 1px solid var(--dr-line);
+ *   background: var(--dr-canvas);
+ *   focus: border-color: var(--dr-brand);
+ */

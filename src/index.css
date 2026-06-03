@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "./styles/darwin-design-system.css";
 
 @tailwind base;
 @tailwind components;
@@ -6,47 +6,46 @@
 
 @layer base {
   :root {
-    --background: 160 10% 6%;
-    --foreground: 0 0% 95%;
+    /* Darwin Research warm palette — mapped to shadcn/ui CSS variables */
 
-    --card: 160 8% 10%;
-    --card-foreground: 0 0% 95%;
+    --background:          33 37% 95%;   /* #F7F3EE canvas */
+    --foreground:          26 19% 9%;    /* #1C1713 ink */
 
-    --popover: 160 8% 10%;
-    --popover-foreground: 0 0% 95%;
+    --card:                0 0% 100%;    /* #FFFFFF surface */
+    --card-foreground:     26 19% 9%;
 
-    --primary: 150 100% 50%;
-    --primary-foreground: 160 10% 6%;
+    --popover:             0 0% 100%;
+    --popover-foreground:  26 19% 9%;
 
-    --secondary: 160 8% 15%;
-    --secondary-foreground: 0 0% 85%;
+    --primary:             36 40% 54%;   /* #B8935A brand amber */
+    --primary-foreground:  0 0% 100%;
 
-    --muted: 160 6% 18%;
-    --muted-foreground: 160 5% 55%;
+    --secondary:           38 30% 92%;   /* #F0EBE3 plate */
+    --secondary-foreground: 26 19% 9%;
 
-    --accent: 150 100% 50%;
-    --accent-foreground: 160 10% 6%;
+    --muted:               38 30% 92%;
+    --muted-foreground:    28 14% 41%;   /* #78685A ink-sub */
 
-    --destructive: 0 84% 60%;
+    --accent:              36 40% 54%;
+    --accent-foreground:   0 0% 100%;
+
+    --destructive:         0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 160 6% 20%;
-    --input: 160 6% 20%;
-    --ring: 150 100% 50%;
+    --border:              26 30% 87%;   /* #E8DDD5 line */
+    --input:               26 30% 87%;
+    --ring:                36 40% 54%;
 
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
-    --glow-primary: 0 0 20px hsl(150 100% 50% / 0.3), 0 0 40px hsl(150 100% 50% / 0.1);
-    --glow-primary-strong: 0 0 20px hsl(150 100% 50% / 0.5), 0 0 60px hsl(150 100% 50% / 0.2);
-
-    --sidebar-background: 160 10% 6%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 150 100% 50%;
-    --sidebar-primary-foreground: 160 10% 6%;
-    --sidebar-accent: 160 8% 15%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 160 6% 20%;
-    --sidebar-ring: 150 100% 50%;
+    --sidebar-background:  33 37% 95%;
+    --sidebar-foreground:  26 19% 9%;
+    --sidebar-primary:     36 40% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent:      38 30% 92%;
+    --sidebar-accent-foreground: 26 19% 9%;
+    --sidebar-border:      26 30% 87%;
+    --sidebar-ring:        36 40% 54%;
   }
 }
 
@@ -55,19 +54,32 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground;
+    font-family: var(--dr-font-sans);
+    -webkit-font-smoothing: antialiased;
   }
 }
 
 @layer utilities {
-  .glow-text {
-    text-shadow: 0 0 20px hsl(150 100% 50% / 0.5), 0 0 40px hsl(150 100% 50% / 0.2);
+  /* Darwin Research section label */
+  .dr-label {
+    font-size: var(--dr-label-size);
+    font-weight: var(--dr-label-weight);
+    letter-spacing: var(--dr-label-spacing);
+    text-transform: uppercase;
+    color: var(--dr-brand);
   }
-  .glow-box {
-    box-shadow: var(--glow-primary);
+
+  /* Warm card shadow */
+  .dr-shadow {
+    box-shadow: var(--dr-shadow-sm);
   }
-  .glow-box-strong {
-    box-shadow: var(--glow-primary-strong);
+  .dr-shadow-md {
+    box-shadow: var(--dr-shadow-md);
+  }
+
+  /* Amber text glow (subtle — for hero accent) */
+  .dr-glow-text {
+    text-shadow: 0 2px 20px rgba(184, 147, 90, 0.3);
   }
 }

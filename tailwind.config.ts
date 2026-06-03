@@ -57,28 +57,46 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        /* Darwin Research design tokens */
+        brand: {
+          DEFAULT: "#B8935A",
+          light:   "#F5E8D8",
+          dark:    "#9A7844",
+        },
+        canvas:  "#F7F3EE",
+        plate:   "#F0EBE3",
+        ink: {
+          DEFAULT: "#1C1713",
+          sub:     "#78685A",
+          muted:   "#A8968A",
+        },
+        line:    "#E8DDD5",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        sans: [
+          "Pretendard Variable",
+          "Pretendard",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Noto Sans KR",
+          "Malgun Gothic",
+          "sans-serif",
+        ],
+      },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
