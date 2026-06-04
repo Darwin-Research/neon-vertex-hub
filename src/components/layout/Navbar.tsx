@@ -9,13 +9,13 @@ const mainNavItems = [
   { label: "경영진",   path: "/leadership" },
   { label: "보도자료",  path: "/press"      },
   { label: "IR 자료실", path: "/ir"         },
+  { label: "문의하기",  path: "/contact"    },
 ];
 
 const mobileOnlyItems = [
   { label: "연혁",      path: "/history"    },
   { label: "공지사항",  path: "/notice"     },
   { label: "오시는 길", path: "/directions" },
-  { label: "문의하기",  path: "/contact"    },
 ];
 
 export default function Navbar() {
