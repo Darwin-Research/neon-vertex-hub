@@ -17,13 +17,15 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     const { error } = await supabase.from("inquiries").insert(form);
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast({ title: "오류", description: "전송에 실패했습니다.", variant: "destructive" });
-    } else {
-      toast({ title: "전송 완료", description: "문의가 접수되었습니다." });
-      setForm({ name: "", email: "", company: "", phone: "", message: "" });
+      return;
     }
+    await supabase.functions.invoke("send-inquiry-email", { body: form });
+    setLoading(false);
+    toast({ title: "전송 완료", description: "문의가 접수되었습니다." });
+    setForm({ name: "", email: "", company: "", phone: "", message: "" });
   };
 
   return (
