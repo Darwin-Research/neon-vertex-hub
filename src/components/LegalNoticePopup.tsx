@@ -10,7 +10,7 @@ export default function LegalNoticePopup() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-canvas/95 backdrop-blur-md border border-line rounded-lg shadow-2xl w-full max-w-lg mx-4 overflow-hidden">
+      <div className="bg-canvas/60 backdrop-blur-md border border-line rounded-lg shadow-2xl w-full max-w-lg mx-4 overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-line">
           <h2 className="text-base font-bold text-ink">투자 유의 및 면책 고지</h2>
           <button
