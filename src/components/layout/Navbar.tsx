@@ -66,7 +66,7 @@ export default function Navbar() {
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-4 top-[68px] bg-surface border border-line rounded-xl shadow-lg w-auto min-w-[150px]" style={{ boxShadow: "var(--dr-shadow-md)" }}>
+        <div className="absolute right-4 top-[68px] bg-canvas border border-line rounded-xl shadow-lg w-auto min-w-[150px]" style={{ boxShadow: "var(--dr-shadow-md)" }}>
           <div className="px-2 py-2 space-y-0.5">
             {[...mainNavItems, ...mobileOnlyItems].map((item) => (
               <Link

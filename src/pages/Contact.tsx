@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -31,12 +30,12 @@ export default function Contact() {
   return (
     <Layout>
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
           <p className="text-primary font-semibold tracking-widest text-sm mb-4">CONTACT</p>
           <h1 className="text-4xl md:text-5xl font-black mb-16">문의하기</h1>
         </motion.div>
 
-        <div className="max-w-xl">
+        <div className="max-w-xl mx-auto">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Input placeholder="이름 *" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="bg-card" />

@@ -35,11 +35,10 @@ export default function Footer() {
           <div>
             <p className="dr-label mb-4">연락처</p>
             <div className="space-y-2 text-sm text-ink-sub">
-              <p>서울특별시 강남구 테헤란로 123</p>
-              <p>Tel: 02-1234-5678</p>
+              <p>서울특별시 강남구 테헤란로70길 12</p>
               <p>
-                <a href="mailto:info@darwinresearch.kr" className="hover:text-brand transition-colors">
-                  info@darwinresearch.kr
+                <a href="mailto:mail@darwin-research-kr.com" className="hover:text-brand transition-colors">
+                  mail@darwin-research-kr.com
                 </a>
               </p>
             </div>

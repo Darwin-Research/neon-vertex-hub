@@ -10,7 +10,7 @@ export default function LegalNoticePopup() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-surface border border-line rounded-lg shadow-2xl w-full max-w-lg mx-4 overflow-hidden">
+      <div className="bg-canvas/95 backdrop-blur-md border border-line rounded-lg shadow-2xl w-full max-w-lg mx-4 overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-line">
           <h2 className="text-base font-bold text-ink">투자 유의 및 면책 고지</h2>
           <button
@@ -23,11 +23,11 @@ export default function LegalNoticePopup() {
           </button>
         </div>
 
-        <div className="px-5 py-5 max-h-[60vh] overflow-y-auto">
-          <p className="text-sm text-ink-sub leading-relaxed mb-4">
+        <div className="px-5 py-4 max-h-[85vh] overflow-y-auto">
+          <p className="text-sm text-ink leading-snug mb-3">
             본 웹사이트(darwin-research-kr.com, 이하 '본 사이트')는 다윈리서치(Darwin Research, 이하 '회사')의 회사 소개를 위한 정보 제공 목적으로 운영됩니다.
           </p>
-          <ol className="list-decimal list-outside pl-5 space-y-3 text-sm text-ink-sub leading-relaxed">
+          <ol className="list-decimal list-outside pl-5 space-y-1.5 text-sm text-ink leading-snug">
             <li>
               본 사이트에 게재된 모든 정보는 정보 제공만을 목적으로 하며, 특정 금융투자상품·종목의 매수·매도 또는 청약을 권유하거나 투자를 유인하기 위한 것이 아닙니다.
             </li>
@@ -47,7 +47,7 @@ export default function LegalNoticePopup() {
               본 사이트의 콘텐츠에 대한 무단 복제·배포·전재를 금합니다.
             </li>
           </ol>
-          <p className="text-sm text-ink-sub leading-relaxed mt-4">
+          <p className="text-sm text-ink leading-snug mt-3">
             본 고지에 동의하시는 경우에만 사이트 이용을 계속하시기 바랍니다.
           </p>
         </div>
