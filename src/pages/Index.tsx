@@ -27,8 +27,8 @@ const products = [
       "웹 UI와 메신저 봇 양쪽에서 같은 엔진으로 작성",
     ],
     video: {
-      src: "/media/darwin-teaser-demo.mp4",
-      poster: "/media/darwin-teaser-demo-poster.jpg",
+      src: "/media/darwin-teaser-demo-v5.mp4",
+      poster: "/media/darwin-teaser-demo-poster-v5.jpg",
       label: "15초 데모 미리보기",
       aria: "Darwin Teaser가 IR 자료로 1페이지 티저를 만드는 과정 데모 영상",
       headline: "손이 많이 가는 자료 수집까지 자동으로.",
