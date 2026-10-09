@@ -15,8 +15,8 @@ export default function Footer() {
               <span className="text-xs font-medium text-ink-sub">다윈리서치</span>
             </Link>
             <p className="text-sm text-ink-sub leading-relaxed max-w-xs">
-              매칭이 아니라, 리서치입니다.<br />
-              한 건의 연결을 위해 수십 시간의 리서치가 먼저 진행됩니다.
+              반복되는 업무를 AI로 자동화하는<br />
+              툴을 만드는 AI 서비스 컴퍼니입니다.
             </p>
           </div>
 
@@ -25,8 +25,7 @@ export default function Footer() {
             <p className="dr-label mb-4">바로가기</p>
             <div className="space-y-2 text-sm text-ink-sub">
               <Link to="/about"     className="block hover:text-brand transition-colors">회사소개</Link>
-              <Link to="/portfolio" className="block hover:text-brand transition-colors">사업실적</Link>
-              <Link to="/ir"        className="block hover:text-brand transition-colors">IR 자료실</Link>
+              <a href="/#products"  className="block hover:text-brand transition-colors">제품</a>
               <Link to="/contact"   className="block hover:text-brand transition-colors">문의하기</Link>
             </div>
           </div>
@@ -50,7 +49,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Darwin Research. All rights reserved.
           </p>
           <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-brand">
-            VENTURE CAPITAL · PRIVATE EQUITY
+            AI AUTOMATION SOFTWARE
           </p>
         </div>
       </div>

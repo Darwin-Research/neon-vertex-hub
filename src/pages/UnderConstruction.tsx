@@ -37,7 +37,7 @@ export default function UnderConstruction() {
 
           <div className="mt-16 pt-12 border-t border-line">
             <p className="dr-label mb-3">DARWIN RESEARCH</p>
-            <p className="text-ink-sub">매칭이 아니라, 리서치입니다.</p>
+            <p className="text-ink-sub">반복 업무를 자동화하는 AI 툴을 만듭니다.</p>
             <p className="text-ink-sub">정식 오픈 시 더 충실한 내용으로 찾아뵙겠습니다.</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 text-left">
@@ -48,13 +48,13 @@ export default function UnderConstruction() {
               </div>
               <div className="rounded-xl border border-line bg-plate/40 p-5">
                 <p className="text-ink-muted text-xs mb-2">준비 중</p>
-                <p className="text-ink font-bold mb-1">사업실적</p>
-                <p className="text-ink-sub text-sm">주요 투자·연결 실적을 정리하고 있습니다.</p>
+                <p className="text-ink font-bold mb-1">고객 사례</p>
+                <p className="text-ink-sub text-sm">제품 도입 사례를 정리하고 있습니다.</p>
               </div>
               <div className="rounded-xl border border-line bg-plate/40 p-5">
                 <p className="text-ink-muted text-xs mb-2">준비 중</p>
-                <p className="text-ink font-bold mb-1">IR 자료실</p>
-                <p className="text-ink-sub text-sm">투자자 대상 자료를 준비하고 있습니다.</p>
+                <p className="text-ink font-bold mb-1">보도자료</p>
+                <p className="text-ink-sub text-sm">소식과 보도자료를 준비하고 있습니다.</p>
               </div>
             </div>
           </div>

@@ -4,11 +4,9 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const mainNavItems = [
+  { label: "제품",     path: "/#products"  },
   { label: "회사소개",  path: "/about"      },
-  { label: "사업실적",  path: "/portfolio"  },
-  { label: "경영진",   path: "/leadership" },
   { label: "보도자료",  path: "/press"      },
-  { label: "IR 자료실", path: "/ir"         },
   { label: "문의하기",  path: "/contact"    },
 ];
 
@@ -17,6 +15,15 @@ const mobileOnlyItems = [
   { label: "공지사항",  path: "/notice"     },
   { label: "오시는 길", path: "/directions" },
 ];
+
+// Hash targets (e.g. "/#products") need a plain anchor: react-router's Link does not scroll to them.
+function NavItem({ to, children, ...rest }: React.ComponentProps<"a"> & { to: string }) {
+  return to.includes("#") ? (
+    <a href={to} {...rest}>{children}</a>
+  ) : (
+    <Link to={to} {...rest}>{children}</Link>
+  );
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -38,7 +45,7 @@ export default function Navbar() {
           {/* Desktop nav */}
           <div className="hidden sm:flex items-center gap-0.5">
             {mainNavItems.map((item) => (
-              <Link
+              <NavItem
                 key={item.path}
                 to={item.path}
                 className={cn(
@@ -49,7 +56,7 @@ export default function Navbar() {
                 )}
               >
                 {item.label}
-              </Link>
+              </NavItem>
             ))}
           </div>
 
@@ -69,7 +76,7 @@ export default function Navbar() {
         <div className="absolute right-4 top-[68px] bg-canvas border border-line rounded-xl shadow-lg w-auto min-w-[150px]" style={{ boxShadow: "var(--dr-shadow-md)" }}>
           <div className="px-2 py-2 space-y-0.5">
             {[...mainNavItems, ...mobileOnlyItems].map((item) => (
-              <Link
+              <NavItem
                 key={item.path}
                 to={item.path}
                 onClick={() => setOpen(false)}
@@ -81,7 +88,7 @@ export default function Navbar() {
                 )}
               >
                 {item.label}
-              </Link>
+              </NavItem>
             ))}
           </div>
         </div>
