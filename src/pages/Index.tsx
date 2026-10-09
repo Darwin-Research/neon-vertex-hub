@@ -13,6 +13,30 @@ const fadeUp = {
 
 const products = [
   {
+    id: "teaser",
+    label: "DOCUMENT AUTOMATION",
+    name: "Darwin Teaser",
+    ko: "기업 티저 문서 자동 작성",
+    icon: FileText,
+    summary:
+      "IR 자료와 공개 출처를 읽어 1페이지 티저 문서를 자동으로 작성합니다. 수 시간 걸리던 초안 작업을 몇 분으로 줄입니다.",
+    points: [
+      "IR 덱·등기·공시 등 공개 자료에서 핵심 정보를 추출해 한 장으로 정리",
+      "숫자와 문장마다 출처를 남겨 검토자가 바로 확인 가능",
+      "근거가 없는 항목은 추측하지 않고 입력 대기로 표시",
+      "웹 UI와 메신저 봇 양쪽에서 같은 엔진으로 작성",
+    ],
+    video: {
+      src: "/media/darwin-teaser-demo.mp4",
+      poster: "/media/darwin-teaser-demo-poster.jpg",
+      label: "15초 데모 미리보기",
+      aria: "Darwin Teaser가 IR 자료로 1페이지 티저를 만드는 과정 데모 영상",
+      headline: "IR 자료 한 개로 1페이지 티저 초안까지.",
+      caption:
+        "자료를 올리면 핵심 항목을 추출하고 출처를 붙여 한 장으로 조립합니다. 영상 속 기업과 수치는 모두 가상의 예시입니다.",
+    },
+  },
+  {
     id: "shopfit",
     label: "E-COMMERCE AUTOMATION",
     name: "ShopFit",
@@ -27,25 +51,17 @@ const products = [
       "정산 명세로 실측 손익과 실효 수수료율을 확인하고 다음 소싱에 반영",
       "셀러마다 데이터베이스를 분리해 데이터가 섞이지 않는 구조",
     ],
-  },
-  {
-    id: "teaser",
-    label: "DOCUMENT AUTOMATION",
-    name: "Darwin Teaser",
-    ko: "기업 티저 문서 자동 작성",
-    icon: FileText,
-    summary:
-      "IR 자료와 공개 출처를 읽어 1페이지 티저 문서를 자동으로 작성합니다. 수 시간 걸리던 초안 작업을 몇 분으로 줄입니다.",
-    points: [
-      "IR 덱·등기·공시 등 공개 자료에서 핵심 정보를 추출해 한 장으로 정리",
-      "숫자와 문장마다 출처를 남겨 검토자가 바로 확인 가능",
-      "근거가 없는 항목은 추측하지 않고 입력 대기로 표시",
-      "웹 UI와 메신저 봇 양쪽에서 같은 엔진으로 작성",
-    ],
+    video: {
+      src: "/media/shopfit-onboarding.mp4",
+      poster: "/media/shopfit-onboarding-poster.jpg",
+      label: "20초 온보딩 미리보기",
+      aria: "ShopFit 셀러 온보딩 과정 영상",
+      headline: "처음 쓰는 셀러도 5단계면 시작합니다.",
+      caption:
+        "화면의 안내를 따라 마켓 연결과 이익 기준만 정하면 되고, 나머지 설정은 기본값으로 두고 나중에 바꿀 수 있습니다.",
+    },
   },
 ];
-
-const [shopfit, teaser] = products;
 
 const principles = [
   {
@@ -137,92 +153,65 @@ export default function Index() {
           <motion.div {...fadeUp} className="mb-12">
             <p className="dr-label mb-3">PRODUCTS</p>
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-ink">
-              현재 운영 중인 자동화 툴
+              자동화 툴
             </h2>
           </motion.div>
 
-          {/* ShopFit — featured with onboarding video */}
-          <motion.article
-            id={shopfit.id}
-            {...fadeUp}
-            className="rounded-xl border border-line bg-surface p-6 sm:p-8 dr-shadow scroll-mt-24 mb-6"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-              <div className="lg:col-span-2">
-                <div className="flex items-center justify-between mb-6">
-                  <p className="dr-label">{shopfit.label}</p>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-light text-brand">
-                    <shopfit.icon size={20} />
-                  </span>
-                </div>
-                <h3 className="text-3xl font-black text-ink tracking-tight">{shopfit.name}</h3>
-                <p className="text-sm font-semibold text-brand mt-1 mb-4">{shopfit.ko}</p>
-                <p className="text-sm sm:text-base text-ink-sub leading-relaxed mb-6">{shopfit.summary}</p>
-                <ul className="space-y-2.5 border-t border-line pt-5">
-                  {shopfit.points.map((pt) => (
-                    <li key={pt} className="flex gap-2.5 text-sm text-ink leading-snug">
-                      <Zap size={14} className="mt-0.5 shrink-0 text-brand" />
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="space-y-6">
+            {products.map((p, i) => (
+              <motion.article
+                key={p.id}
+                id={p.id}
+                {...fadeUp}
+                className="rounded-xl border border-line bg-surface p-6 sm:p-8 dr-shadow scroll-mt-24"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                  <div className={`lg:col-span-2 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+                    <div className="flex items-center justify-between mb-6">
+                      <p className="dr-label">{p.label}</p>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-light text-brand">
+                        <p.icon size={20} />
+                      </span>
+                    </div>
+                    <h3 className="text-3xl font-black text-ink tracking-tight">{p.name}</h3>
+                    <p className="text-sm font-semibold text-brand mt-1 mb-4">{p.ko}</p>
+                    <p className="text-sm sm:text-base text-ink-sub leading-relaxed mb-6">{p.summary}</p>
+                    <ul className="space-y-2.5 border-t border-line pt-5">
+                      {p.points.map((pt) => (
+                        <li key={pt} className="flex gap-2.5 text-sm text-ink leading-snug">
+                          <Zap size={14} className="mt-0.5 shrink-0 text-brand" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div className="lg:col-span-3">
-                <p className="dr-label mb-3 flex items-center gap-1.5">
-                  <PlayCircle size={14} /> 20초 온보딩 미리보기
-                </p>
-                <div className="overflow-hidden rounded-lg border border-line bg-ink aspect-video">
-                  <video
-                    className="h-full w-full object-cover"
-                    src="/media/shopfit-onboarding.mp4"
-                    poster="/media/shopfit-onboarding-poster.jpg"
-                    controls
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-label="ShopFit 셀러 온보딩 과정 영상"
-                  />
+                  <div className={`lg:col-span-3 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                    <p className="dr-label mb-3 flex items-center gap-1.5">
+                      <PlayCircle size={14} /> {p.video.label}
+                    </p>
+                    <div className="overflow-hidden rounded-lg border border-line bg-ink aspect-video">
+                      <video
+                        className="h-full w-full object-cover"
+                        src={p.video.src}
+                        poster={p.video.poster}
+                        controls
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        aria-label={p.video.aria}
+                      />
+                    </div>
+                    <p className="mt-4 text-sm text-ink-sub leading-relaxed">
+                      <span className="font-semibold text-ink">{p.video.headline}</span>{" "}
+                      {p.video.caption}
+                    </p>
+                  </div>
                 </div>
-                <p className="mt-4 text-sm text-ink-sub leading-relaxed">
-                  <span className="font-semibold text-ink">처음 쓰는 셀러도 5단계면 시작합니다.</span>{" "}
-                  화면의 안내를 따라 마켓 연결과 이익 기준만 정하면 되고, 나머지 설정은 기본값으로 두고 나중에 바꿀 수 있습니다.
-                </p>
-              </div>
-            </div>
-          </motion.article>
-
-          {/* Darwin Teaser */}
-          <motion.article
-            id={teaser.id}
-            {...fadeUp}
-            className="rounded-xl border border-line bg-surface p-7 sm:p-8 dr-shadow scroll-mt-24"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-              <div className="lg:col-span-2">
-                <div className="flex items-center justify-between mb-6">
-                  <p className="dr-label">{teaser.label}</p>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-light text-brand">
-                    <teaser.icon size={20} />
-                  </span>
-                </div>
-                <h3 className="text-3xl font-black text-ink tracking-tight">{teaser.name}</h3>
-                <p className="text-sm font-semibold text-brand mt-1">{teaser.ko}</p>
-              </div>
-              <div className="lg:col-span-3">
-                <p className="text-sm sm:text-base text-ink-sub leading-relaxed mb-6">{teaser.summary}</p>
-                <ul className="space-y-2.5 border-t border-line pt-5">
-                  {teaser.points.map((pt) => (
-                    <li key={pt} className="flex gap-2.5 text-sm text-ink leading-snug">
-                      <Zap size={14} className="mt-0.5 shrink-0 text-brand" />
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.article>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
 
