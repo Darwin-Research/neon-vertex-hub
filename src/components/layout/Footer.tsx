@@ -25,7 +25,7 @@ export default function Footer() {
             <p className="dr-label mb-4">바로가기</p>
             <div className="space-y-2 text-sm text-ink-sub">
               <Link to="/about"     className="block hover:text-brand transition-colors">회사소개</Link>
-              <a href="/#products"  className="block hover:text-brand transition-colors">제품</a>
+              <Link to="/#products" className="block hover:text-brand transition-colors">제품</Link>
               <Link to="/contact"   className="block hover:text-brand transition-colors">문의하기</Link>
             </div>
           </div>

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Calculator, FileText, Layers, RefreshCw, ShieldCheck, Zap, PlayCircle } from "lucide-react";
 import Layout from "@/components/layout/Layout";
@@ -52,9 +53,9 @@ const products = [
       "셀러마다 데이터베이스를 분리해 데이터가 섞이지 않는 구조",
     ],
     video: {
-      src: "/media/shopfit-onboarding.mp4",
-      poster: "/media/shopfit-onboarding-poster.jpg",
-      label: "20초 온보딩 미리보기",
+      src: "/media/shopfit-onboarding-v3.mp4",
+      poster: "/media/shopfit-onboarding-poster-v3.jpg",
+      label: "15초 온보딩 미리보기",
       aria: "ShopFit 셀러 온보딩 과정 영상",
       headline: "처음 쓰는 셀러도 5단계면 시작합니다.",
       caption:
@@ -82,6 +83,17 @@ const principles = [
 ];
 
 export default function Index() {
+  const { hash } = useLocation();
+
+  // In-app hash links (e.g. "/#products") scroll here without a full page reload.
+  useEffect(() => {
+    if (!hash) return;
+    const t = window.setTimeout(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+    return () => window.clearTimeout(t);
+  }, [hash]);
+
   return (
     <Layout>
       <LegalNoticePopup />

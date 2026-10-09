@@ -3,8 +3,44 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const HIDE_DAY_KEY = "darwin:legal-notice:hide-day";
+const AGREED_KEY = "darwin:legal-notice:agreed";
+
+function todayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// Storage can throw (private mode, blocked cookies); fall back to showing the notice.
+function shouldShow() {
+  try {
+    if (sessionStorage.getItem(AGREED_KEY) === "1") return false;
+    return localStorage.getItem(HIDE_DAY_KEY) !== todayKey();
+  } catch {
+    return true;
+  }
+}
+
 export default function LegalNoticePopup() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(shouldShow);
+
+  const agree = () => {
+    try {
+      sessionStorage.setItem(AGREED_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+    setOpen(false);
+  };
+
+  const hideToday = () => {
+    try {
+      localStorage.setItem(HIDE_DAY_KEY, todayKey());
+    } catch {
+      /* ignore */
+    }
+    agree();
+  };
 
   if (!open) return null;
 
@@ -15,7 +51,7 @@ export default function LegalNoticePopup() {
           <h2 className="text-base font-bold text-ink">웹사이트 이용 안내</h2>
           <button
             type="button"
-            onClick={() => setOpen(false)}
+            onClick={agree}
             className="text-ink-muted hover:text-ink transition-colors"
             aria-label="닫기"
           >
@@ -49,11 +85,11 @@ export default function LegalNoticePopup() {
           </p>
         </div>
 
-        <div className="flex justify-end px-5 py-4 border-t border-line">
-          <Button
-            onClick={() => setOpen(false)}
-            className="bg-brand text-white hover:bg-brand-dark"
-          >
+        <div className="flex items-center justify-between gap-3 px-5 py-4 border-t border-line">
+          <Button variant="outline" onClick={hideToday} className="border-line text-ink-sub hover:bg-plate">
+            오늘 하루 보지 않기
+          </Button>
+          <Button onClick={agree} className="bg-brand text-white hover:bg-brand-dark">
             동의하고 계속
           </Button>
         </div>

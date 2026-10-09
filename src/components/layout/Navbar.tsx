@@ -16,15 +16,6 @@ const mobileOnlyItems = [
   { label: "오시는 길", path: "/directions" },
 ];
 
-// Hash targets (e.g. "/#products") need a plain anchor: react-router's Link does not scroll to them.
-function NavItem({ to, children, ...rest }: React.ComponentProps<"a"> & { to: string }) {
-  return to.includes("#") ? (
-    <a href={to} {...rest}>{children}</a>
-  ) : (
-    <Link to={to} {...rest}>{children}</Link>
-  );
-}
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -45,7 +36,7 @@ export default function Navbar() {
           {/* Desktop nav */}
           <div className="hidden sm:flex items-center gap-0.5">
             {mainNavItems.map((item) => (
-              <NavItem
+              <Link
                 key={item.path}
                 to={item.path}
                 className={cn(
@@ -56,7 +47,7 @@ export default function Navbar() {
                 )}
               >
                 {item.label}
-              </NavItem>
+              </Link>
             ))}
           </div>
 
@@ -76,7 +67,7 @@ export default function Navbar() {
         <div className="absolute right-4 top-[68px] bg-canvas border border-line rounded-xl shadow-lg w-auto min-w-[150px]" style={{ boxShadow: "var(--dr-shadow-md)" }}>
           <div className="px-2 py-2 space-y-0.5">
             {[...mainNavItems, ...mobileOnlyItems].map((item) => (
-              <NavItem
+              <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setOpen(false)}
@@ -88,7 +79,7 @@ export default function Navbar() {
                 )}
               >
                 {item.label}
-              </NavItem>
+              </Link>
             ))}
           </div>
         </div>
