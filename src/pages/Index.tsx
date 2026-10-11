@@ -53,8 +53,8 @@ const products = [
       "셀러마다 데이터베이스를 분리해 데이터가 섞이지 않는 구조",
     ],
     video: {
-      src: "/media/shopfit-onboarding-v3.mp4",
-      poster: "/media/shopfit-onboarding-poster-v3.jpg",
+      src: "/media/shopfit-onboarding-v4.mp4",
+      poster: "/media/shopfit-onboarding-poster-v4.jpg",
       label: "15초 온보딩 미리보기",
       aria: "ShopFit 셀러 온보딩 과정 영상",
       headline: "처음 쓰는 셀러도 5단계면 시작합니다.",
